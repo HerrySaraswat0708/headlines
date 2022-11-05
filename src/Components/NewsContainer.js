@@ -50,13 +50,13 @@ export default function NewsContainer(props) {
   useEffect(() => {
     fetchData();
   }, []);
-  const ref = useRef(null)
+
   
   return (
     <>
      
      
-      <h2 className="my-3 text-center">Today's Top {props.category==='general'?'':Capitalize(props.category)} Headlines :</h2>
+      <h2 key='h2' className="my-3 text-center">Today's Top {props.category==='general'?'':Capitalize(props.category)} Headlines :</h2>
         
         {loading && <Spinner key={"loading"} />}
 
@@ -66,17 +66,17 @@ export default function NewsContainer(props) {
           style={{}} //To put endMessage and loader to the top.
           // inverse={true} //
           hasMore={articles.length !== totalResults}
-          loader={<Spinner />}
+          loader={<Spinner /> }key='scroll'
           //scrollableTarget="scrollableDiv"
           >
-          <div className="container ">
+          <div key='container2' className="container ">
           {console.log(articles.length,totalResults)}
 
-          <div className="row my-5 ">
+          <div key='container3' className="row my-5 ">
             {articles.filter((element)=>{return(element.description!==null && element.urlToImage!==null)}).map((element) => {
               return (
                 <>
-                    <div className="col-md-4 my-2">
+                    <div key='container4' className="col-md-4 my-2">
                       <NewsItem
                         key={element.content}
                         img={element.urlToImage}

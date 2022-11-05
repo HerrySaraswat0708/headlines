@@ -12,13 +12,13 @@ function App() {
     color='#f11946'
     progress={progress}
     
-    onLoaderFinished={() => setProgress(0)}
+    onLoaderFinished={() => setProgress(0)} key='loading'
   />
-     <div>
-        <Router>
+     <div key='div'>
+        <Router key='router'>
         <Navbar key='navbar'/>
-        <Routes>
-          <Route exact path='/headlines'   element={<NewsContainer setProgress = {setProgress} key='general'  pageSize={9} category='general'/>}></Route>
+        <Routes key='routes'>
+          <Route exact path="/headlines"   element={<NewsContainer setProgress = {setProgress} key='general'  pageSize={9} category='general'/>}></Route>
           <Route exact path='/science'  element={<NewsContainer setProgress = {setProgress} key='science' pageSize={9} category='science'/>}></Route>
           <Route exact path='/entertainment'  element = {<NewsContainer setProgress = {setProgress}key='entertainment' pageSize={9}  category='entertainment'/>}></Route>
           <Route exact path='/technology'  element = {<NewsContainer setProgress = {setProgress} key='technology' pageSize={9} category='technology'/>}></Route>
