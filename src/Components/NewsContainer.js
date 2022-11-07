@@ -17,7 +17,8 @@ export default function NewsContainer(props) {
   const fetchData = async () => {
     try {
       props.setProgress(10)
-      const url = `https://newsapi.org/v2/top-headlines?country=in&category=${props.category}&page=${page}&pageSize=9&apiKey=6168098497e440d786a533aa384fdb20`;
+       const url = `https://newsapi.org/v2/top-headlines?country=in&category=${props.category}&page=${page}&pageSize=9&apiKey=6168098497e440d786a533aa384fdb20`;
+       //const url = `https://newsapi.in/newsapi/news.php?key=fttYuCy7oJVNPtXnghbbqvk8QeL42e&category=hindi_state`
       setLoading(true);
       const response = await fetch(url);
       const json = await response.json();
@@ -33,6 +34,7 @@ export default function NewsContainer(props) {
   const fetchMoreData = async () => {
     try {
       const url = `https://newsapi.org/v2/top-headlines?country=in&category=${props.category}&page=${page + 1}&pageSize=9&apiKey=6168098497e440d786a533aa384fdb20`;
+      //const url = `https://newsapi.in/newsapi/news.php?key=fttYuCy7oJVNPtXnghbbqvk8QeL42e&category=hindi_state`
       setPage(page + 1);
       
       const response = await fetch(url);
@@ -58,7 +60,7 @@ export default function NewsContainer(props) {
      
       <h2 key='h2' className="my-3 text-center">Today's Top {props.category==='general'?'':Capitalize(props.category)} Headlines :</h2>
         
-        {loading && <Spinner key={"loading"} />}
+        {loading && <Spinner key="loading" />}
 
         <InfiniteScroll
           dataLength={articles.length}
@@ -76,9 +78,9 @@ export default function NewsContainer(props) {
             {articles.filter((element)=>{return(element.description!==null && element.urlToImage!==null)}).map((element) => {
               return (
                 <>
-                    <div key='container4' className="col-md-4 my-2">
+                    <div className="col-md-4 my-2" key={element.id}>
                       <NewsItem
-                        key={element.content}
+                        key={element.description}
                         img={element.urlToImage}
                         title={element.title.slice(0, 45)}
                         description={element.description.slice(0, 88)}
